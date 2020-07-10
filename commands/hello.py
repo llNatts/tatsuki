@@ -7,7 +7,8 @@ class Teste(Cog):
 
     @command(name="teste")
     async def teste_command(self, ctx):
-        await ctx.send("ok")
+        await ctx.send("""Bem...
+        de alguma forma estou viva :) """)
 
 def setup(bot: Bot):
     bot.add_cog(Teste(bot))
