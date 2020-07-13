@@ -2,16 +2,12 @@ from discord.ext.commands import Bot
 import logging
 import load
 import os.path
-import events.on_ready
 
 def main():
     prefix = load.prefix
     token = load.token
 
     bot = Bot(command_prefix=prefix, guild_subscriptions=True)
-
-    #root = ["events"]
-    #files = ["on_ready", "onMemberJoin"]
 
     for filename in os.listdir('./events'):
         if filename.endswith('.py'):

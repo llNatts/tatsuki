@@ -1,5 +1,5 @@
 from discord.ext.commands import Cog, command, Bot
-from discord import Member
+from discord import Member, Embed
 
 class Teste(Cog):
     def __init__(self, bot: Bot):
@@ -7,7 +7,6 @@ class Teste(Cog):
 
     @command(name="bye")
     async def teste_command(self, ctx):
-        await ctx.send("""Vejo você depois """)
-
+        await ctx.send(f'hello {ctx.author}')
 def setup(bot: Bot):
     bot.add_cog(Teste(bot))
