@@ -16,6 +16,12 @@ class Events(Cog):
         memberRole = get(member.guild.roles, name="[Membro]")
         await member.add_roles(memberRole)
         await channel.send(embed=memberEmbed)
+        
+    @Cog.listener()
+    async def on_ready(self):
+        print("="*20)
+        print('Logged in as:')
+        print('Username: ' + self.bot.user.name)
 
 def setup(bot: Bot):
     bot.add_cog(Events(bot))

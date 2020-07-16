@@ -7,24 +7,16 @@ def main():
     prefix = load.prefix
     token = load.token
 
-    bot = Bot(command_prefix=prefix, guild_subscriptions=True)
+    bot = Bot(command_prefix=prefix)
 
-    for filename in os.listdir('./events'):
+    for filename in os.listdir('./extensions'):
         if filename.endswith('.py'):
             file = filename.split('.')[0]
-            path = f"events.{file}"
+            path = f"extensions.{file}"
             try:
                 bot.load_extension(path)
+                print(f'[LOG]: extension loaded: {path}')
             except Exception as error:
-                print("{0.__class__.__name__}: {0}".format(error))
-
-    for filename in os.listdir('./commands'):
-        if filename.endswith('.py'):
-            file = filename.split('.')[0]
-            path = f"commands.{file}"
-            try:
-                bot.load_extension(path)
-            except Exception as error:
-                print("{0.__class__.__name__}: {0}".format(error))
+                print(error)
     bot.run(token)
 main()
