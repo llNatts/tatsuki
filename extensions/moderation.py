@@ -19,7 +19,7 @@ class Moderation(Cog):
         else:
             await channel.purge(limit=int(arg))
             await channel.send(f'Deletei algumas mensagens')
-
+    
 def setup(bot: Bot):
     bot.add_cog(Moderation(bot))
 
