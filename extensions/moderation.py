@@ -47,7 +47,7 @@ class Moderation(Cog):
     @has_permissions(ban_members=True)
     @bot_has_permissions(ban_members=True)
     @command(name='unban', usage='t!unban <userID>')
-    async def unban_command(self, ctx, arg, reason='Por conselho melhor, o {target.mention} foi desbanido.'):
+    async def unban_command(self, ctx, arg, reason='Sem motivo aparente'):
         """
         Todos merecem uma segunda chance, não é ?
         """
