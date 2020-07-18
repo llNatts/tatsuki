@@ -30,25 +30,7 @@ class Events(Cog):
     @Cog.listener()
     async def on_command_error(self, ctx: Context, error: CommandError):
         if isinstance(error, CommandNotFound):
-            matches = get_close_matches(ctx.invoked_with, self.bot.commands_calls) 
-            if matches:
-                await ctx.message.add_reaction('❔')
-
-                def check(reaction, user) -> bool:
-                    return str(reaction.emoji) == '❔' and \
-                           reaction.message.id == ctx.message.id and \
-                           user == ctx.author
-
-                try:
-                    await self.bot.wait_for("reaction_add", check=check, timeout=30)
-                except TimeoutError:
-                    pass
-                else:
-                    commands = '.'.join(matches)
-                    await ctx.send(f"Os comandos parecidos com `{ctx.invoked_with}` são:```{commands}.```Para saber como utiliza-los, use o comando `{ctx.prefix}help nome_do_commando`!")
-
-            else:
-                await ctx.message.add_reaction('❌')
+            await ctx.message.add_reaction('❔')
 
         elif isinstance(error, MissingPermissions):
             missing_permissions = ', '.join(error.missing_perms)
@@ -74,6 +56,8 @@ class Events(Cog):
                 await ctx.send(message)
             else:
                 raise error
+        elif isinstance(error, CommandOnCooldown):
+            await ctx.send(f'Você está em cooldown, por favor tente novamente em {error.retry_after:.0f} segundos!')
         else:
             raise error
 

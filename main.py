@@ -18,5 +18,10 @@ def main():
                 print(f'[LOG]: extension loaded: {path}')
             except Exception as error:
                 print(error)
-    bot.run(token)
+
+    try:
+        bot.run(token)
+    except Exception as error:
+        print(error)
+
 main()

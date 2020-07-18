@@ -1,4 +1,5 @@
 from discord.ext.commands import Cog, command, Bot
+from discord.utils import get, find
 from discord import Member, Embed, User
 
 
@@ -20,17 +21,14 @@ class Anythings(Cog):
             await ctx.send(embed=imgEmbed)
         except Exception as error:
             await ctx.send('Ocorreu um erro: ' + error)
+    # @command(name='anúncio', usage='ta!anúncio', alias=['anuncio', 'ping', 'alerta'])
+    # async def ping_myself(self, ctx):
+    #     memberRole = get(ctx.message.author.guild.roles, id=733941266672386149)
+    #     roles = ctx.author.roles
 
-    @command(name="reload", hidden=True)
-    async def reload_command(self, ctx, arg=None):
-        if ctx.author.id == 621183220083326996:     
-            try:
-                self.bot.reload_extension(f'extensions.{arg}')
-                await ctx.send(f'O módulo {arg} foi recarregado com sucesso!')
-            except Exception as error:
-                await ctx.send(f'[ERROR]: {error}')
-        else:
-            await ctx.send(f'{ctx.author.mention}, você não tem permissão para usar este comando.')
-
+    #     for role in roles:
+    #         if role.id == memberRole.id:
+    #             await ctx.send(f'O cargo {memberRole.mention} foi adicionado')
+    #             await ctx.author.add_roles(memberRole
 def setup(bot: Bot):
-    bot.add_cog(Anythings(bot))
+    bot.add_cog(Anythings(bot)) 
