@@ -17,7 +17,7 @@ class Events(Cog):
         memberEmbed.set_image(url="https://1.bp.blogspot.com/-Zy9fqOW8GFY/XOWeahMi46I/AAAAAAAAcS4/-QsUIa7bGigVsdfXCxCr3Am-r3BGnh49wCLcBGAs/s1600/kawaii-cute-fofo-anime-gif%2B%252817%2529.gif")
 
         channel = get(member.guild.text_channels, id=732046615170515005)
-        memberRole = get(member.guild.roles, name="[Membro]")
+        memberRole = get(member.guild.roles, id=732016295658258478)
         await member.add_roles(memberRole)
         await channel.send(embed=memberEmbed)
         
