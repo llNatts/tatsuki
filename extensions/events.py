@@ -13,14 +13,17 @@ class Events(Cog):
 
     @Cog.listener()
     async def on_member_join(self, member: Member):
-        memberEmbed = Embed(title='🥳 | Seja bem vindo', colour=member.color, description=f'Bem vindo ao servidor {member.mention}, espero que você fique a vontade para conversar com nossa comunidade XD')
-        memberEmbed.set_author(name=member.name,icon_url=member.avatar_url if member.avatar_url else member.default_avatar_url)
-        memberEmbed.set_image(url="https://1.bp.blogspot.com/-Zy9fqOW8GFY/XOWeahMi46I/AAAAAAAAcS4/-QsUIa7bGigVsdfXCxCr3Am-r3BGnh49wCLcBGAs/s1600/kawaii-cute-fofo-anime-gif%2B%252817%2529.gif")
+        try: 
+            memberEmbed = Embed(title='🥳 | Seja bem-vinda(o)', colour=member.color, description=f'Bem vinda(o) ao servidor {member.mention}, espero que você fique a vontade para conversar com nossa comunidade XD')
+            memberEmbed.set_author(name=member.name,icon_url=member.avatar_url if member.avatar_url else member.default_avatar_url)
+            memberEmbed.set_image(url="https://1.bp.blogspot.com/-Zy9fqOW8GFY/XOWeahMi46I/AAAAAAAAcS4/-QsUIa7bGigVsdfXCxCr3Am-r3BGnh49wCLcBGAs/s1600/kawaii-cute-fofo-anime-gif%2B%252817%2529.gif")
 
-        channel = get(member.guild.text_channels, id=732046615170515005)
-        memberRole = get(member.guild.roles, id=732016295658258478)
-        await member.add_roles(memberRole)
-        await channel.send(embed=memberEmbed)
+            channel = get(member.guild.text_channels, id=732046615170515005)
+            memberRole = get(member.guild.roles, id=732016295658258478)
+            await member.add_roles(memberRole)
+            await channel.send(embed=memberEmbed)
+        except Exception as error:
+            print(f'LOG: {member.guild.name}: ocorreu um erro com {member}, erro: {error}')
         
     @Cog.listener()
     async def on_ready(self):
