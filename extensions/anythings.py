@@ -30,5 +30,19 @@ class Anythings(Cog):
     #         if role.id == memberRole.id:
     #             await ctx.send(f'O cargo {memberRole.mention} foi adicionado')
     #             await ctx.author.add_roles(memberRole
+    
+    @command(name='notificar', usage='t!autorole')
+    async def anuncio_addrole(self,ctx):
+        try:
+            has_role = get(ctx.author.roles, id=733941266672386149)
+            if has_role:
+                await ctx.send(f'Foi removido o cargo: `{has_role}` ')
+                await ctx.author.remove_roles(has_role)
+            else:
+                role = get(ctx.author.guild.roles, id=733941266672386149)
+                await ctx.author.add_roles(role)
+                await ctx.send(f'Adicionado o cargo: `{role.name}`')
+        except Exception as erorr:
+            print(erorr)
 def setup(bot: Bot):
     bot.add_cog(Anythings(bot)) 
