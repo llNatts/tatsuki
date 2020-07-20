@@ -1,10 +1,11 @@
 from discord.ext.commands import Bot, Cog, Context
-from discord import Message, Member, Game, Reaction, Embed
+from discord import Message, Member, Game, Reaction, Embed, ActivityType, Activity
 from discord.utils import get, find
 from discord.ext.commands.errors import *
 from discord.errors import *
 from difflib import get_close_matches
 from asyncio import TimeoutError
+from discord.message import *
 
 class Events(Cog):
     def __init__(self, bot: Bot):
@@ -26,6 +27,20 @@ class Events(Cog):
         print("="*20)
         print('Logged in as:')
         print('Username: ' + self.bot.user.name)
+        await self.bot.change_presence(activity=Activity(type=ActivityType.watching, name="Animes em: animeshouse.netㅤㅤㅤㅤㅤㅤㅤㅤㅤPrecisa de ajuda ? Me mencione"))
+
+
+    
+    @Cog.listener()
+    async def on_command(self, ctx: Context):
+        print(f'[LOG]: O usuário {ctx.author} usou o comando {ctx.command}')
+
+    @Cog.listener()
+    async def on_reaction_add(self,reaction: Reaction, member: Member):
+        print(reaction,member)
+    @Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        print(payload)
 
     @Cog.listener()
     async def on_command_error(self, ctx: Context, error: CommandError):

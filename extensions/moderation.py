@@ -1,6 +1,7 @@
 from discord.ext.commands import Bot, Cog, command, has_permissions, bot_has_permissions, cooldown, BucketType
 from discord import User, Member, Embed
-from extensions import events
+from asyncio import TimeoutError, sleep
+from discord.utils import get, find
 import asyncio
 
 class Moderation(Cog):
@@ -60,13 +61,62 @@ class Moderation(Cog):
                 await BanEntry.user.send(f'Você foi desbanido pelo: \n{ctx.author.mention} \nPelo seguinte motivo: \n{reason}')
             else:
                 await ctx.send('Usuario não encontrado.')
+    @cooldown(1,8,BucketType.user)
+    @has_permissions(ban_members=True)
+    @bot_has_permissions(ban_members=True)
+    @command(name='autorole', usage='t!autorole')
+    async def autorole_command(self, ctx):
+        raise NotImplementedError()
+        # message = await ctx.send('Você está pronto para configurar um autorole?')
+        # await sleep(1)
+        # await message.add_reaction('✅')
+        # await sleep(1)
+        # await message.add_reaction('🇽')
 
-    @cooldown(1,8, BucketType.user)
-    @has_permissions(administrator=True)
-    @bot_has_permissions(administrator=True)
-    @command(name='autorole', usage='!autorole <channel> <message> <role> <emoji>')
-    async def react_role(self, ctx, *arg):
-        raise events.CommandNotFound()
+        # def check(r, u):
+        #     return str(r.emoji) == '✅' and r.message.id == message.id and u == ctx.author
+
+        # try:
+        #     await self.bot.wait_for("reaction_add", check=check, timeout=120)
+        # except TimeoutError:
+        #     await message.edit(content="Você demorou demais...")
+        #     return
+        # await ctx.send('Por favor, digite o id do canal em que você quer adicionar o cargo por emoji')
+        # textID = await self.bot.wait_for('message', check=None, timeout=120)
+        # if textID.author != ctx.author:
+        #     return
+        # try:
+        #     channel = get(ctx.guild.text_channels, id=int(textID.content))
+        # except Exception as error:
+        #     await ctx.send(f'Não foi possível adicionar encontrar este canal!\n Motivo: {error}')
+        #     return
+        # await ctx.send('Ótimo, agora me forneça o id da mensagem que você quer por o emoji')
+        # messageID = await self.bot.wait_for('message', check=None, timeout=120)
+        # if messageID.author != ctx.author:
+        #     return
+        # try:
+        #     messager = await channel.fetch_message(int(messageID.content))
+        # except Exception as error:
+        #     await ctx.send(f'Não foi possível encontrar está mensagem\nMotivo: {error}')
+        #     return
+        # await ctx.send('E por ultimo, me forneça o emoji em que você quer adicionar')
+        # emojiID = await self.bot.wait_for('message', check=None, timeout=120)
+
+        # await messager.add_reaction(emojiID.content)
+        # ctx.send('Você adicionou um Reaction Role')
+    @command(name='notificar', usage='t!autorole')
+    async def anuncio_addrole(self,ctx):
+        try:
+            has_role = get(ctx.author.roles, id=733941266672386149)
+            if has_role:
+                await ctx.send(f'Foi removido o cargo: `{has_role}` ')
+                await ctx.author.remove_roles(has_role)
+            else:
+                role = get(ctx.author.guild.roles, id=733941266672386149)
+                await ctx.author.add_roles(role)
+                await ctx.send(f'Adicionado o cargo: `{role.name}`')
+        except Exception as erorr:
+            print(erorr)
 
     @command(name="reload", hidden=True)
     async def reload_command(self, ctx, arg=None):
