@@ -33,6 +33,9 @@ class Anythings(Cog):
     
     @command(name='notificar', usage='t!autorole')
     async def anuncio_addrole(self,ctx):
+        """
+            Receba um ping toda vez que alguma coisa acontecer no servidor XD.
+        """
         try:
             has_role = get(ctx.author.roles, id=733941266672386149)
             if has_role:

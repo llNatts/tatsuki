@@ -104,20 +104,6 @@ class Moderation(Cog):
 
         # await messager.add_reaction(emojiID.content)
         # ctx.send('Você adicionou um Reaction Role')
-    @command(name='notificar', usage='t!autorole')
-    async def anuncio_addrole(self,ctx):
-        try:
-            has_role = get(ctx.author.roles, id=733941266672386149)
-            if has_role:
-                await ctx.send(f'Foi removido o cargo: `{has_role}` ')
-                await ctx.author.remove_roles(has_role)
-            else:
-                role = get(ctx.author.guild.roles, id=733941266672386149)
-                await ctx.author.add_roles(role)
-                await ctx.send(f'Adicionado o cargo: `{role.name}`')
-        except Exception as erorr:
-            print(erorr)
-
     @command(name="reload", hidden=True)
     async def reload_command(self, ctx, arg=None):
         if ctx.author.id == 621183220083326996:     
