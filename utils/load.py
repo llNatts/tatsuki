@@ -13,5 +13,5 @@ def get_prefix():
 	return prefix
 
 def get_db():
-	db  = os.getenv('db')
+	db  = os.getenv('database')
 	return db

@@ -7,10 +7,11 @@ class utils:
     def ReactRoleCreate_json(self,channelID,messageID,roleID,emoji):
         data = {
             'Id': {
-                "channelID": channelID,
-                "messageID": messageID,
-                "roleID": roleID,
-                "Emoji": emoji
+                "guid_id"
+                "channel_id": channelID,
+                "message_id": messageID,
+                "role_id": roleID,
+                "emoji": emoji
             },
             "Date": "NOW",
             "Owner": "me",
