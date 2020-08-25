@@ -15,7 +15,6 @@ class events(Cog):
             memberEmbed.set_author(name=member.name,icon_url=member.avatar_url if member.avatar_url else member.default_avatar_url)
             memberEmbed.set_image(url="https://i.imgur.com/34M2TPI.png")
             memberEmbed.set_thumbnail(url=member.avatar_url)
-
             channel = get(member.guild.text_channels, id=732046615170515005)
             memberRole = get(member.guild.roles, id=732016295658258478)
             await member.add_roles(memberRole)
