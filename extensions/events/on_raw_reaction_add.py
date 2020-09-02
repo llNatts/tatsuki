@@ -7,7 +7,7 @@ class events(Cog):
 
     @Cog.listener()
     async def on_raw_reaction_add(self,payload):
-        print(self.bot.raw_reactionlist["guildinfo"]["reactionroles"])
+        pass:
     @Cog.listener()
     async def on_reaction_add(self,r: Reaction, u: Member):
         print(r,u)

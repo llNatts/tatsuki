@@ -8,19 +8,9 @@ import sched, time
 def main():
     prefix = load.get_prefix()
     token = load.get_token()
+
     bot = Bot(command_prefix=prefix)
-    bot.raw_reactionlist = {
-        "guildinfo": {
-            "name": "AnimesHouse",
-            "reactionroles": {
-                "Channelid": 732251408145055854,
-                "MessageId": 747149160368832644,
-                "Emoji": "📦",
-                "role": 732016295658258478
-            }
-        }
-    }
-    print(bot.raw_reactionlist)
+    bot.raw_reactionlist= [{}]
 # the hanlder load extensions
     for root, dirs, files in os.walk(".", topdown=False):
         for name in files:

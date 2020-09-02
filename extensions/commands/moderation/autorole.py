@@ -56,17 +56,18 @@ class reactionRole(Cog):
             embed.add_field(name='Emoji:', value=emoji.content)
             message = await ctx.send(embed=embed)
             await message.add_reaction('✅')
-            cache = {
-                "channel": channel.id,
-                "message": rmessage.id,
-                "role": role.id,
-                "emoji": emoji.id
-            }
-            self.bot.raw_reactionlist.append(cache)
             try:
                 await self.bot.wait_for("reaction_add", check=check, timeout=60)
                 await ctx.send('Configuração criada com sucesso.')
                 await rmessage.add_reaction(emoji.content)
+                cache = {
+                    "channel": channel.id,
+                    "message": rmessage.id,
+                    "role": role.id,
+                    "emoji": emoji.id
+                }
+                self.bot.raw_reactionlist.append(cache)
+                print(self.bot.raw_reactionlist)
             except TimeoutError:
                 await ctx.send('O comando foi cancelado')
                 return

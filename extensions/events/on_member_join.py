@@ -9,7 +9,6 @@ class events(Cog):
 
     @Cog.listener()
     async def on_member_join(self, member: Member):
-        database.usersdb.Insert(member)
         try: 
             memberEmbed = Embed(title='🥳 | Seja bem-vinda(o)', colour=member.color, description=f'Bem vinda(o) ao servidor {member.mention}, espero que você fique a vontade para conversar com nossa comunidade XD')
             memberEmbed.set_author(name=member.name,icon_url=member.avatar_url if member.avatar_url else member.default_avatar_url)
