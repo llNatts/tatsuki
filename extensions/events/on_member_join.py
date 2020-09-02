@@ -12,7 +12,7 @@ class events(Cog):
         try: 
             memberEmbed = Embed(title='🥳 | Seja bem-vinda(o)', colour=member.color, description=f'Bem vinda(o) ao servidor {member.mention}, espero que você fique a vontade para conversar com nossa comunidade XD')
             memberEmbed.set_author(name=member.name,icon_url=member.avatar_url if member.avatar_url else member.default_avatar_url)
-            memberEmbed.set_image(url="https://i.imgur.com/34M2TPI.png")
+            memberEmbed.set_image(url="https://image.myanimelist.net/ui/OK6W_koKDTOqqqLDbIoPAlFQu8shL8XcdIA4uNRaPL0")
             memberEmbed.set_thumbnail(url=member.avatar_url)
             channel = get(member.guild.text_channels, id=732046615170515005)
             memberRole = get(member.guild.roles, id=750831828990034010)
