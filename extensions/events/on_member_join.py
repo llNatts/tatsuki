@@ -16,7 +16,7 @@ class events(Cog):
             memberEmbed.set_thumbnail(url=member.avatar_url)
             channel = get(member.guild.text_channels, id=732046615170515005)
             memberRole = get(member.guild.roles, id=750831828990034010)
-            await member.add_roles(memberRole)i
+            await member.add_roles(memberRole)
             await channel.send(embed=memberEmbed)
         except Exception as error:
             print(f'LOG: {member.guild.name}: ocorreu um erro com {member}, erro: {error}')
