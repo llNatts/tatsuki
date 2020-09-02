@@ -7,7 +7,7 @@ class events(Cog):
 
     @Cog.listener()
     async def on_raw_reaction_add(self,payload):
-        pass:
+        pass
     @Cog.listener()
     async def on_reaction_add(self,r: Reaction, u: Member):
         print(r,u)
